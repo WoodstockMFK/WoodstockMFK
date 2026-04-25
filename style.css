@@ -302,3 +302,22 @@ footer {
         font-size: 0.95rem;
     }
 }
+
+.icon-section {
+    position: relative;
+    padding-right: 60px;
+}
+
+.section-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: auto;
+    object-fit: contain;
+}
+
+.section-icon.mirror {
+    transform: scaleX(-1);
+}
+
