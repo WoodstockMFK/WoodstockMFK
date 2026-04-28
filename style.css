@@ -147,7 +147,7 @@ section p:last-child {
     margin-bottom: 0;
 }
 
-/* ========== Cards ========== */
+
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -160,10 +160,39 @@ section p:last-child {
     border-radius: 10px;
 }
 
-.card h3 {
-    margin-bottom: 5px;
-    color: #0b4f6c;
+.cards.cards-compact {
+    display: block;
+    text-align: center;
 }
+
+.cards.cards-compact .card {
+    display: inline-block;
+    width: auto;
+    max-width: 100%;
+    text-align: left;
+}
+
+.card h3 {
+    margin: 0 0 8px 0;
+    color: #0b4f6c;
+    line-height: 1.2;
+}
+
+.card-line {
+    margin: 0 0 6px 0;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.card-line:last-child {
+    margin-bottom: 0;
+}
+
+.season-block + .season-block {
+    margin-top: 22px;
+}
+
+
 
 /* ========== Galleri ========== */
 #galleri {
