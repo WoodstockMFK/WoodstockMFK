@@ -29,7 +29,7 @@
             <img src="images/Bird/pngegg1.png" alt="" class="section-icon">
             <h2>Hvorfor vælge modelflyvning?</h2>
             <p>
-                Uanset om du er ung eller gammel, er der noget helt særligt ved fascinationen af flyvning.
+                Uanset om man er ung eller gammel, er der noget helt særligt ved fascinationen af flyvning.
                 Med modelflyvning får du en hobby, hvor teknik, kreativitet og fællesskab går hånd i hånd.
             </p>
             <p>
@@ -174,9 +174,9 @@
     </footer>
 
 <script>
-    const imageCount = 50;
+    const imageCount = 48;
     const gallery = document.getElementById('gallery');
-    const siteVersion = "20260428";
+    const siteVersion = "20260428a";
 
     for (let i = imageCount; i >= 1; i--) {
         const fileName = `foto${i}.jpg`;
@@ -198,27 +198,5 @@
     document.getElementById('site-version').textContent = `Version: ${siteVersion}`;
 </script>
 
-
-    <!-- <script>
-        const imageCount = 50;
-        const gallery = document.getElementById('gallery');
-
-        for (let i = imageCount; i >= 1; i--) {
-            const fileName = `foto${i}.jpg`;
-            const title = `Fly foto ${i}`;
-            const imagePath = `images/Fotogalleri/Fly/${fileName}`;
-
-            const figure = document.createElement('figure');
-            figure.className = 'gallery-item';
-
-            const img = document.createElement('img');
-            img.src = imagePath;
-            img.alt = title;
-            img.loading = 'lazy';
-
-            figure.appendChild(img);
-            gallery.appendChild(figure);
-        }
-    </script> -->
 </body>
 </html>
