@@ -93,6 +93,12 @@ header p {
     text-decoration: underline;
 }
 
+
+.site-version {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-top: 6px;
+}
 /* ========== Navigation ========== */
 nav {
     position: sticky;

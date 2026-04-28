@@ -164,11 +164,42 @@
         </section>
     </main>
 
+    <!-- <footer>
+        <p>&copy; 2026 Modelfly over alt</p>
+    </footer> -->
+
     <footer>
         <p>&copy; 2026 Modelfly over alt</p>
+        <p id="site-version" class="site-version"></p>
     </footer>
 
-    <script>
+<script>
+    const imageCount = 50;
+    const gallery = document.getElementById('gallery');
+    const siteVersion = "20260428";
+
+    for (let i = imageCount; i >= 1; i--) {
+        const fileName = `foto${i}.jpg`;
+        const title = `Fly foto ${i}`;
+        const imagePath = `images/Fotogalleri/Fly/${fileName}?v=${siteVersion}`;
+
+        const figure = document.createElement('figure');
+        figure.className = 'gallery-item';
+
+        const img = document.createElement('img');
+        img.src = imagePath;
+        img.alt = title;
+        img.loading = 'lazy';
+
+        figure.appendChild(img);
+        gallery.appendChild(figure);
+    }
+
+    document.getElementById('site-version').textContent = `Version: ${siteVersion}`;
+</script>
+
+
+    <!-- <script>
         const imageCount = 50;
         const gallery = document.getElementById('gallery');
 
@@ -188,6 +219,6 @@
             figure.appendChild(img);
             gallery.appendChild(figure);
         }
-    </script>
+    </script> -->
 </body>
 </html>
