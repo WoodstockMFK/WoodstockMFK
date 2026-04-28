@@ -93,26 +93,6 @@ header p {
     text-decoration: underline;
 }
 
-/* .mdk-link {
-    color: #e63946;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.mdk-link:hover {
-    text-decoration: underline;
-}
-
-.FB-link {
-    color: blue;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.FB-link:hover {
-    text-decoration: underline;
-} */
-
 /* ========== Navigation ========== */
 nav {
     position: sticky;
@@ -287,7 +267,7 @@ footer {
 @media (max-width: 600px) {
     body::before {
         background-size: cover;
-        opacity: 0.12;
+        opacity: 0.6;
     }
 
     header {
@@ -373,6 +353,13 @@ footer {
 
 /* ========== Små telefoner ========== */
 @media (max-width: 400px) {
+    
+        body::before {
+        background-size: cover;
+        opacity: 0.6;
+    }
+
+    
     header {
         padding: 45px 12px;
     }
