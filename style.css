@@ -70,6 +70,49 @@ header p {
     font-weight: 400;
 }
 
+.mdk-link {
+    color: #e63946;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.fb-link {
+    color: #1877f2;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.tobias-link {
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+
+.mdk-link:hover,.fb-link:hover,.tobias-link:hover {
+    text-decoration: underline;
+}
+
+/* .mdk-link {
+    color: #e63946;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.mdk-link:hover {
+    text-decoration: underline;
+}
+
+.FB-link {
+    color: blue;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.FB-link:hover {
+    text-decoration: underline;
+} */
+
 /* ========== Navigation ========== */
 nav {
     position: sticky;
