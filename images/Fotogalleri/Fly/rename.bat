@@ -17,5 +17,8 @@ for %%F in (__tmp__*.jpg) do (
     set /a count+=1
 )
 
+set /a total=count-1
+
 echo Done!
+echo Antal fotos total: %total%
 pause
