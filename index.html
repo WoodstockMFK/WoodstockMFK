@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Woodstock Modelflyveklub ved Torrild - lige udenfor Odder i Østjylland. 
             Prøv fjernstyrede modelfly, få hjælp som begynder, se flyvetider, adresse og billeder fra klubben.">
-    <title>Modelfly over alt</title>
+    <title>Woodstock modelflyveklub</title>
     <link rel="preload" as="image" href="images/Camel-lineup.jpg" fetchpriority="high">
     <link rel="stylesheet" href="style.css?v=18">
     <link rel="canonical" href="https://www.WoodstockMFK.dk/">
@@ -245,7 +245,16 @@
             lightboxCaption.textContent = "";
         }
 
-        for (let i = imageCount; i >= 1; i--) {
+        let renderedColumnCount = 0;
+        let resizeTimer = null;
+
+        function getGalleryColumnCount() {
+            if (window.innerWidth <= 600) return 1;
+            if (window.innerWidth <= 900) return 2;
+            return 3;
+        }
+
+        function createGalleryItem(i, index, columnCount) {
             const fileName = `foto${i}.jpg`;
             const title = `Fly foto ${i}`;
             const imagePath = `images/Fotogalleri/Fly/${fileName}?v=${siteVersion}`;
@@ -257,13 +266,111 @@
             img.src = imagePath;
             img.alt = title;
             img.title = fileName;
-            img.loading = 'lazy';
+            img.decoding = 'async';
 
+            // Load de første synlige billeder straks.
+            // Resten lazy-loader.
+            if (index < columnCount * 2) {
+                img.loading = 'eager';
+            } else {
+                img.loading = 'lazy';
+            }
 
+            // Giv kun de allerførste billeder høj prioritet.
+            if (index < columnCount) {
+                img.fetchPriority = 'high';
+            }
 
-            figure.appendChild(img);
-            fragment.appendChild(figure);
+            const link = document.createElement('a');
+            link.href = imagePath;
+            link.target = '_blank';
+            link.rel = 'noopener';
+            link.className = 'gallery-link';
+            link.title = `Åbn ${fileName} i original størrelse`;
+
+            link.appendChild(img);
+            figure.appendChild(link);
+            return figure;
         }
+
+        // function createGalleryItem(i, index, columnCount) {
+        //     const fileName = `foto${i}.jpg`;
+        //     const title = `Fly foto ${i}`;
+        //     const imagePath = `images/Fotogalleri/Fly/${fileName}?v=${siteVersion}`;
+
+        //     const figure = document.createElement('figure');
+        //     figure.className = 'gallery-item';
+
+        //     const img = document.createElement('img');
+        //     img.src = imagePath;
+        //     img.alt = title;
+        //     img.title = fileName;
+        //     img.decoding = 'async';
+
+        //     // Load de første synlige billeder straks.
+        //     // Resten lazy-loader.
+        //     if (index < columnCount * 2) {
+        //         img.loading = 'eager';
+        //     } else {
+        //         img.loading = 'lazy';
+        //     }
+
+        //     // Giv kun de allerførste billeder høj prioritet.
+        //     if (index < columnCount) {
+        //         img.fetchPriority = 'high';
+        //     }
+
+        //     img.addEventListener('click', () => {
+        //         openLightbox(imagePath, title, fileName);
+        //     });
+
+        //     figure.appendChild(img);
+        //     return figure;
+        // }
+
+        function renderGallery() {
+            const columnCount = getGalleryColumnCount();
+
+            // Undgå at bygge galleriet igen, hvis antal kolonner ikke har ændret sig.
+            if (renderedColumnCount === columnCount && gallery.childElementCount > 0) {
+                return;
+            }
+
+            renderedColumnCount = columnCount;
+            gallery.textContent = '';
+            gallery.style.setProperty('--gallery-columns', columnCount);
+
+            const columns = [];
+
+            for (let c = 0; c < columnCount; c++) {
+                const column = document.createElement('div');
+                column.className = 'gallery-column';
+                gallery.appendChild(column);
+                columns.push(column);
+            }
+
+            let index = 0;
+
+            for (let i = 1; i <= imageCount; i++, index++) {
+                const columnIndex = index % columnCount;
+                const item = createGalleryItem(i, index, columnCount);
+                columns[columnIndex].appendChild(item);
+            }
+
+            //     for (let i = imageCount; i >= 1; i--, index++) {
+            //         const columnIndex = index % columnCount;
+            //         const item = createGalleryItem(i, index, columnCount);
+            //         columns[columnIndex].appendChild(item);
+            //     }
+        }
+
+        renderGallery();
+
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(renderGallery, 150);
+        });
+
 
         gallery.appendChild(fragment);
         document.getElementById('site-version').textContent = `Version: ${siteVersion}`;
